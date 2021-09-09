@@ -1,0 +1,14 @@
+9月 08, 2021 9:07:31 下午 JULTest 自定义日志级别
+严重: msg server
+9月 08, 2021 9:07:31 下午 JULTest 自定义日志级别
+警告: msg warning
+9月 08, 2021 9:07:31 下午 JULTest 自定义日志级别
+信息: log info
+9月 08, 2021 9:07:31 下午 JULTest 自定义日志级别
+配置: msg config
+9月 08, 2021 9:07:31 下午 JULTest 自定义日志级别
+详细: msg fine
+9月 08, 2021 9:07:31 下午 JULTest 自定义日志级别
+较详细: msg finer
+9月 08, 2021 9:07:31 下午 JULTest 自定义日志级别
+非常详细: msg finest

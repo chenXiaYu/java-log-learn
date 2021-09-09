@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %c [%thread] %-5level %msg%n"></property>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <file>/Users/chenxiayu/IdeaProjects/java-log-learn/SLF4J-learn/src/main/resources/log.txt</file>
+        <append>true</append>
+    </appender>
+
+    <appender name="html" class="ch.qos.logback.core.FileAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+          <layout class="ch.qos.logback.classic.html.HTMLLayout">
+              <pattern>${pattern}</pattern>
+          </layout>
+        </encoder>
+        <file>/Users/chenxiayu/IdeaProjects/java-log-learn/SLF4J-learn/src/main/resources/html.html</file>
+        <append>true</append>
+    </appender>
+
+    <appender name="roll" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <append>true</append>
+        <file>/Users/chenxiayu/IdeaProjects/java-log-learn/SLF4J-learn/src/main/resources/roll.txt</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <maxFileSize>1MB</maxFileSize>
+<!--            %i 这个参数必须要有-->
+            <fileNamePattern>/Users/chenxiayu/IdeaProjects/java-log-learn/SLF4J-learn/src/main/resources/rolling.%d{yyyy-MM-dd}.log%i.txt</fileNamePattern>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!--配置异步日志-->
+    <appender name="async" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="roll"> </appender-ref>
+    </appender>
+
+
+    <!--配置自定义logger additivit表示这个级别的包的日志会被过滤掉，父级目录无法打印-->
+    <logger name="chen.log" level="ALL" additivity="false">
+        <appender-ref ref="console"></appender-ref>
+    </logger>
+
+    <root level="ALL">
+<!--        <appender-ref ref="console"></appender-ref>-->
+        <appender-ref ref="file"></appender-ref>
+<!--        <appender-ref ref="html"></appender-ref>-->
+<!--        <appender-ref ref="roll"></appender-ref>-->
+    </root>
+</configuration>

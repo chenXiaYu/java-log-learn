@@ -1,0 +1,6 @@
+# Project exclude paths
+/JCL-learn/target/
+/Log4j2-learn/target/
+/log4J-learn/target/
+/SLF4J-learn/target/
+/target/
